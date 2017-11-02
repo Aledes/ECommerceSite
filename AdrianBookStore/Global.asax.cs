@@ -18,6 +18,8 @@ namespace AdrianBookStore
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             //When app starts, route config is what will "hijack" inbound requests and direct them to your control
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }

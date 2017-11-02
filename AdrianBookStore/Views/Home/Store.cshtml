@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Store";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    <div class="row">
+        <div ng-repeat="book in books">
+            <div class="panel-group">
+                <div class="panel-heading text-center">
+                    <h2>{{Book.Title}}</h2>
+                </div>
+                <div class="panel-body">
+                    <h3 ng-if="Book.Title && Book.Author">{{Book.Author}} - {{Book.YearPublished}}</h3>
+                    <br/>
+                    <p>{{Book.Description}}</p>
+                    <div class="pull-left">
+                        {{Book.Price}}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

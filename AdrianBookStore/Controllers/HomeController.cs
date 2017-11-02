@@ -26,5 +26,12 @@ namespace AdrianBookStore.Controllers
 
             return View();
         }
+        
+        public ActionResult Store()
+        {
+            ViewBag.Message = "My store page.";
+
+            return View();
+        }
     }
 }

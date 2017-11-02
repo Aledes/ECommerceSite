@@ -1,0 +1,18 @@
+﻿@model IEnumerable<AdrianBookStore.Models.Book>
+@{ 
+    ViewBag.Title = "List";
+}
+
+<h2>Books</h2>
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="well text-center">
+                <h2>@book.Title</h2>
+                <a href="/book/index/@book.ID"><img class="img-circle img-responsive" src="@book.CoverImage" /></a>
+            </div>
+        </div>
+    }
+</div>
+
