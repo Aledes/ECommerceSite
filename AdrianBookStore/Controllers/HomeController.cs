@@ -16,10 +16,10 @@ namespace AdrianBookStore.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
+        [OutputCache(Duration = 60)]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
