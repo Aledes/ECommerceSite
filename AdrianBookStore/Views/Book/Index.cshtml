@@ -6,7 +6,14 @@
     for(int i = 1; i <= quantityOptions.Length; i++)
     {
         quantityOptions[i - 1] = new SelectListItem();
-        quantityOptions[i - 1].Text = " " + i;
+        if (i == 1)
+        {
+            quantityOptions[i - 1].Text = "1";
+        }
+        else
+        {
+            quantityOptions[i - 1].Text = i + " copies";
+        }
         quantityOptions[i - 1].Value = i.ToString();
     }
 }
@@ -20,13 +27,14 @@
         </div>
         <div class="col-xs-12 col-sm-8">
             <div class="well">
-                <h2>@Model.Title</h2>
-                <h3>@Model.Author</h3><h3 class="price">@Model.Price.ToString("C")</h3>
-                <p>@Model.Year</p>
+                <h2>@Model.Title - @String.Join(",", Model.Authors.Select(x => x.firstName + " " + x.lastName))</h2>
+                <p class="description">@Model.Description</p>
+                <p>Published @Model.Year</p>
+                <h3 class="price">@((Model.Price ?? 0).ToString("C"))</h3>
 
                 @using (Html.BeginForm("Index", "Book", FormMethod.Post, new { @class = "bookForms" }))
                 {
-                    @Html.HiddenFor(m => m.ID)
+                    @Html.HiddenFor(m => m.BookID)
                     @Html.HiddenFor(m => m.Title)
                     @Html.HiddenFor(m => m.Price)
                     <div class="form-group">

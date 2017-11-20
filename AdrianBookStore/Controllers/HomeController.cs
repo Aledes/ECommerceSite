@@ -15,21 +15,21 @@ namespace AdrianBookStore.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Welcome to Poor Adrian's Almanac!";
             return View();
         }
 
         [OutputCache(Duration = 60)]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact Inquiry";
 
             return View();
         }
         
         public ActionResult Store()
         {
-            ViewBag.Message = "My store page.";
+            ViewBag.Message = "The Collection";
 
             return View();
         }

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Adrian's Bookstore</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Scripts/style.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -18,32 +19,51 @@
                 </button>
                 @Html.ActionLink("PAA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Store", "List", "Book")</li>
-                    <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge">1</span></a></li>
-                </ul>
-                <form class="form-inline pull-right signin">
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="email" placeholder="Email"/>
+           
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Store", "List", "Book")</li>
+                            <li>@Html.ActionLink("Sign Out as "+ User.Identity.Name, "LogOff", "Account")</li>
+                            <!-- How to update the shopping cart glyph to reflect # of books ordered?-->
+                            <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge"></span></a></li>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="*******" />
+                }
+                else
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Store", "List", "Book")</li>
+                            <li></li>
+                            <!-- How to update the shopping cart glyph to reflect # of books ordered?-->
+                            <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge"></span></a></li>
+                        </ul>
+                        <form class="form-inline pull-right signin" action="/Account/SignIn">
+                            <div class="form-group">
+                                <input name="email" type="email" class="form-control" id="email" placeholder="Email" />
+                            </div>
+                            <div class="form-group">
+                                <input name="pw" type="password" class="form-control" id="password" placeholder="*******" />
+                            </div>
+                            <button type="submit" class="btn btn-default">Login</button>
+                            <a class="btn btn-warning" href="/Account/Register">Register</a>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-default">Login</button>
-                    <a class="btn btn-warning" href="#">Register</a>
-                </form>
-            </div>
+                }
+           
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Adrian's Book Store *not actual copyright</p>
+            <p>&copy; @DateTime.Now.Year - Poor Adrian's Almanac *not actual copyright</p>
         </footer>
     </div>
 

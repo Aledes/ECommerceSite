@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdrianBookStore.Models;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,30 +10,38 @@ namespace AdrianBookStore.Controllers
 {
     public class CartController : Controller
     {
+        protected BookStoreDBEntities db = new BookStoreDBEntities();
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
         // GET: Cart
         public ActionResult Index()
         {
-            Models.Cart cart = new Models.Cart();
+            Guid cartID = Guid.Parse(Request.Cookies["cartID"].Value);
 
-            //Getting product data from cookies!
-            //TODO: Pull out of database.
-            if (Request.Cookies.AllKeys.Contains("bookTitle"))
+            return View(db.Carts.Find(cartID));
+        }
+
+
+
+        // POST: Cart
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(Models.Cart model)
+        {
+            var cart = db.Carts.Find(model.ID);
+            for (int i = 0; i < model.Cart_Books.Count; i++)
             {
-                cart.Books = new Models.Book[1];
-                cart.Books[0] = new Models.Book();
-                cart.Books[0].Title = Request.Cookies["bookTitle"].Value;
-                cart.Books[0].Quantity = int.Parse(Request.Cookies["productQuantity"].Value);
-                cart.Books[0].Price = decimal.Parse(Request.Cookies["bookPrice"].Value);
+                cart.Cart_Books.ElementAt(i).Quantity = model.Cart_Books.ElementAt(i).Quantity;
             }
-            else
-            {
-                cart.Books = new Models.Book[0];
-            }
-            cart.SubTotal = cart.Books.Sum(x => x.Price * x.Quantity);
-            cart.Tax = cart.SubTotal * .1025m;
-            cart.Total = cart.SubTotal + cart.Tax + cart.ShippingAndHandling;
-
-
+            db.SaveChanges();
             return View(cart);
         }
     }
