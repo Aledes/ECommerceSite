@@ -1,8 +1,0 @@
-﻿.description{
-    font-style: italic;
-    color: grey;
-}
-
-.paabanner{
-    background-image: url('@Url.Content("~/Images/pexels-photo-532179.jpeg")');
-}

@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -24,10 +24,121 @@ textarea {
 }
     */
 
-.signin{
+#browse {
+    text-shadow: none;
+}
+
+#homebanner {
+    color: white;
+    text-shadow: 3px 3px 1px #000000;
+    background-size: cover;
+    background-image: url('../../Images/pexels-photo-532179.png');
+    height: 300px;
+}
+
+@media (max-width: 767px) {
+    .collapsedbutton{
+        display:normal;
+    }
+    .uncollapsedbutton{
+        display: none;
+    }
+}
+
+@media (min-width: 767px){
+    .uncollapsedbutton{
+        display: normal;
+    }
+    .collapsedbutton{
+        display: none;
+    }
+}
+
+.description {
+    font-style: italic;
+    color: grey;
+}
+
+.dropdown-menu{
+    background-color: lightgrey;
+    padding: 5px 5px 5px 5px;
+}
+
+
+.forgotpw {
+    color: dodgerblue;
+    font-size: 10px;
+}
+
+.navbar-default {
+    background-color: darkslategrey;
+}
+
+
+.signin {
     margin-top: 10px;
 }
 
-.homebanner{
-    background-image: url();
+#signindrop{
+    font-size: 6px;
+    text-align: center;
+}
+
+#myform{
+    margin-bottom: 4px;
+}
+
+.tales {
+    width: 65%;
+    margin: auto;
+}
+
+.carousel-inner {
+    width: auto;
+    /*max-height: 350px !important;*/
+    height:auto;
+}
+
+.mylogo{
+    margin-top: 7px;
+}
+#viewcat{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.fullopacity{
+    font-family:'Times New Roman', Times, serif;
+}
+
+.jumbo {
+    background-size: cover;
+    height: 300px;
+}
+
+.homepagepanels{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.booklist{
+    max-height: 600px;
+    width: 100%;
+}
+
+.bookimage{
+    width: 60%;
+}
+
+.panel-default > .panel-heading {
+    color: white;
+    background-color: black;
+    border-color: #ddd;
+}
+
+.panel-heading {
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 5px 5px;
 }

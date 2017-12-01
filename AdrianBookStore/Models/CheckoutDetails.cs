@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Braintree;
 
 namespace AdrianBookStore.Models
 {
     public class CheckoutDetails
     {
         public Cart CurrentCart { get; set; }
-
 
         [Display(Name = "Email")]
         [Required]
@@ -35,5 +35,25 @@ namespace AdrianBookStore.Models
         [Required]
         [Display(Name = "Zip Code")]
         public string ShippingPostalCode { get; set; }
+
+        [Required]
+        [Display(Name = "Cardholder Name")]
+        public string CardholderName { get; set; }
+
+        [Required]
+        [Display(Name = "Credit Card Number")]
+        public string CreditCardNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Card Verification Value (CVV)")]
+        public string CVV { get; set; }
+
+        [Required]
+        [Display(Name = "Credit Card Expiration")]
+        public string ExpirationMonth { get; set; }
+
+        [Required]
+        public string ExpirationYear { get; set; }
+        public Address[] Addresses { get; set; }
     }
 }

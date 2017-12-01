@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - Adrian's Bookstore</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="@Url.Content("~/Scripts/style.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,53 +16,69 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("PAA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src="~/Images/PAAlogoSM.png"  class="mylogo" />
+                </a>
             </div>
-           
-                @if (Context.User.Identity.IsAuthenticated)
-                {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li class="form-group form-inline">
+                                <input name="search" type="text" class="form-control" id="search" placeholder="Search" />
+                                <button href="" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             <li>@Html.ActionLink("Store", "List", "Book")</li>
-                            <li>@Html.ActionLink("Sign Out as "+ User.Identity.Name, "LogOff", "Account")</li>
-                            <!-- How to update the shopping cart glyph to reflect # of books ordered?-->
-                            <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge"></span></a></li>
+                            <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge">@ViewBag.CartCount</span></a></li>
+                            @if (Context.User.Identity.IsAuthenticated)
+                            {
+                            <li>@Html.ActionLink("Sign Out as " + User.Identity.Name, "LogOff", "Account")</li>
+                            <!-- if (User.IsInRole("Administrator")) when set up in database-->
+                            <li>@Html.ActionLink("Products Admin", "Index", "BooksAdmin")</li>
+                            
+                            }
                         </ul>
-                    </div>
-                }
-                else
-                {
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Store", "List", "Book")</li>
-                            <li></li>
-                            <!-- How to update the shopping cart glyph to reflect # of books ordered?-->
-                            <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge"></span></a></li>
-                        </ul>
-                        <form class="form-inline pull-right signin" action="/Account/SignIn">
-                            <div class="form-group">
-                                <input name="email" type="email" class="form-control" id="email" placeholder="Email" />
-                            </div>
-                            <div class="form-group">
-                                <input name="pw" type="password" class="form-control" id="password" placeholder="*******" />
-                            </div>
-                            <button type="submit" class="btn btn-default">Login</button>
-                            <a class="btn btn-warning" href="/Account/Register">Register</a>
-                        </form>
-                    </div>
-                }
-           
+                        
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+
+                            using (Html.BeginForm("SignIn", "Account", null, FormMethod.Post, new { @class = "navbar-form navbar-right form-inline signin" }))
+                            {
+                                <div class="form-group form-inline">
+                                    <a class="btn btn-success" href="/Account/Register">Register</a>
+                                    <a class="btn btn-default collapsedbutton" href="/Account/SignIn">Sign In</a>
+                                </div>
+                                <div class="form-group form-inline uncollapsedbutton">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Sign In
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <div class="form-group">
+                                                Email
+                                                <input name="userName" type="email" class="form-control" id="email" placeholder="Email" />
+                                            </div>
+                                            <div class="form-group">
+                                                Password
+                                                <input name="password" type="password" class="form-control" id="password" placeholder="*******" />
+                                            </div>
+                                            <li role="separator" class="divider"></li>
+                                            <a>@Html.ActionLink("Forgot Password?", "ForgotPassword", "Account", new { @class = "forgotpw" })</a>
+                                                <button type="submit" class="btn btn-warning btn-sm pull-right">Login</button>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        }                                         
+                    </div>      
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Poor Adrian's Almanac *not actual copyright</p>
+            <p style="font-size: 10px;">@DateTime.Now.Year - Poor Adrian's Almanac</p>
         </footer>
     </div>
 

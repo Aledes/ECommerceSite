@@ -10,30 +10,46 @@
         <div>Error: @s</div>
     }
 }
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
 @using (Html.BeginForm())
 {
-    <div>
-        <label for="username">Username</label>
-        <input name="username" type="text" />
-    </div>
+    <form>
+        <div class="container">
+            <div class="container">
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <div class="container">
+                        <div class="myform">
+                            <label for="username">Username</label>
+                            <input name="username" class="form-control" type="text" />
+                        </div>
 
-    <div>
-        <label for="password">Password</label>
-        <input name="password" type="password" />
-    </div>
-    <div>
-        <label for="staySignedIn">Stay Signed In</label>
-        <input name="staySignedIn" type="checkbox" />
-    </div>
-    <input type="submit" value="Login" />
+                        <div class="myform">
+                            <label for="password">Password</label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <div>
+                            <input class="btn btn-default" type="submit" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <div>
+                        @Html.ActionLink("Not Registered? Create New Account!", "Register")
+                    </div>
+                    <div>
+                        @Html.ActionLink("Forgot Password?", "ForgotPassword")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 }
-<div>
-    <div>
-        @Html.ActionLink("Register for a new account", "Register")
-    </div>
-    <div>
-        @Html.ActionLink("Forgot password?", "ForgotPassword")
-    </div>
-</div>
+
 
 

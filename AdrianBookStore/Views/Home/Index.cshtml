@@ -2,28 +2,93 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron homebanner paabanner">
-    <h1>Poor Adrian's Almanac</h1>
-    <p class="lead">Sharing our libraries.</p>
-    <p><a href="/Book/List" class="btn btn-primary btn-lg">Browse &raquo;</a></p>
+<div class="jumbotron" id="homebanner">
+    <h1 class="fullopacity">Poor Adrian's Almanac</h1>
+    <p class="lead">Expand your mind</p>
+    <p><a href="/Book/List" id="browse" class="btn btn-primary btn-lg">Browse &raquo;</a></p>
 </div>
 
-<div class="row"><div class="col-md-4">
+<div class="row">
+    <div class="container">
+        <div class="col-xs-6 col-md-4 col-md-offset-1 homepagepanels">
+            <div class="well">
+                <h2 id="viewcat"><span class="glyphicon glyphicon-fire"></span> Staff Choice <span class="glyphicon glyphicon-fire"></span></h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
 
-    <h2>List Your Library</h2>
-    <p>
-        Share your favorite books!
-    </p>
-    <p><a class="btn btn-info" href="#">Reviews &raquo;</a></p>
-</div>
-    <div class="col-md-4">
-        <h2>Search by Category</h2>
-        <p>Not sure what to read next? Choose books based on what you like!</p>
-        <p><a class="btn btn-info" href="#">View Categories &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Reviews</h2>
-        <p>Let everyone know about your feelings!</p>
-        <p><a class="btn btn-info" href=#">Learn more &raquo;</a></p>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <a href="~/book/Index/2"><img src="~/Images/1984.jpeg" alt="1984 by George Orwell" class="tales"></a>
+                        </div>
+
+                        <div class="item">
+                            <a href="~/book/Index/1"><img src="~/Images/endersgame.jpg" alt="Ender's Game by Orson Scott Card" class="tales"></a>
+                        </div>
+
+                        <div class="item">
+                            <a href="~book/Index/3"><img src="~/Images/the-hobbit.jpg" alt="The Hobbit by J.R.R. Tolkien" class="tales"></a>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+            <div class="col-xs-6 col-md-4 col-md-offset-1 homepagepanels">
+                <div class="well">
+                    <h2 style="display: inline-block; margin-top: 15px;">Search by Genre</h2>
+                    <div class="dropdown" style="display: inline-block;">
+                        <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                            <li class="dropdown-header">Fiction</li>
+                            <li>
+                                <a href="#">Science Fiction</a>
+                                <a href="#">Drama</a>
+                                <a href="#">Action & Adventure</a>
+                                <a href="#">Mystery</a>
+                                <a href="#">Horror</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nonfiction - Biographies</li>
+                            <li>
+                                <a href="#">Great Generals</a>
+                                <a href="#">Great Writers</a>
+                                <a href="#">Great Artists</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 style="display: inline-block; margin-top: 15px;">Search by Author</h2>
+                        <div class="dropdown" style="display: inline-block;">
+                            <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <div class="form-group">
+                                    <input name="userName" type="text" class="form-control" id="Name" placeholder="Name" />
+                                    <button type="submit" class="btn btn-warning btn-sm">Submit</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>              
+</div>          
     </div>
 </div>

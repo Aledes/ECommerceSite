@@ -24,8 +24,8 @@ namespace AdrianBookStore.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            Guid cartID = Guid.Parse(Request.Cookies["cartID"].Value);
-
+            //Guid cartID = Guid.Parse(Request.Cookies["cartID"].Value);
+            Guid? cartID = this.GetCartID();
             return View(db.Carts.Find(cartID));
         }
 
@@ -41,6 +41,8 @@ namespace AdrianBookStore.Controllers
             {
                 cart.Cart_Books.ElementAt(i).Quantity = model.Cart_Books.ElementAt(i).Quantity;
             }
+
+            db.Cart_Books.RemoveRange(cart.Cart_Books.Where(x => x.Quantity == 0));
             db.SaveChanges();
             return View(cart);
         }

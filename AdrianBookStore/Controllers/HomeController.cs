@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdrianBookStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,17 +14,10 @@ namespace AdrianBookStore.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 60)]
         public ActionResult About()
         {
             ViewBag.Message = "Welcome to Poor Adrian's Almanac!";
-            return View();
-        }
-
-        [OutputCache(Duration = 60)]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Contact Inquiry";
-
             return View();
         }
         
@@ -32,6 +26,23 @@ namespace AdrianBookStore.Controllers
             ViewBag.Message = "The Collection";
 
             return View();
+        }
+
+        protected BookStoreDBEntities db = new BookStoreDBEntities();
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        public ActionResult Search(string id)
+        {
+            var matchedBooks = db.Books.Where(x => x.Title.Contains(id) || x.Authors.Select(y => y.firstName).Contains(id) || x.Authors.Select(y => y.lastName).Contains(id));
+            return View(matchedBooks);
         }
     }
 }
