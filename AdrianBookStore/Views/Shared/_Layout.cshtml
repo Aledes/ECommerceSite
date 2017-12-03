@@ -22,9 +22,14 @@
             </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="form-group form-inline">
-                                <input name="search" type="text" class="form-control" id="search" placeholder="Search" />
-                                <button href="" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <li>
+                                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group form-inline searchbar" }))
+                                {
+                            <!-- <li class="form-group form-inline searchbar"> -->
+                                    <input name="search" type="text" class="form-control" id="search" placeholder="Search" />
+                                    <button href="" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <!-- </li> -->
+                                }
                             </li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Store", "List", "Book")</li>

@@ -142,3 +142,10 @@ textarea {
     border-top-right-radius: 3px;
     padding: 5px 5px;
 }
+
+.searchbar {
+    position: relative;
+    display: block;
+    padding-top: 10px;
+    margin-left: 10px;
+}
