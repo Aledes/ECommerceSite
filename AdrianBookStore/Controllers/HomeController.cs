@@ -39,9 +39,9 @@ namespace AdrianBookStore.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Search(string id)
+        public ActionResult Search(string searchString)
         {
-            var matchedBooks = db.Books.Where(x => x.Title.Contains(id) || x.Authors.Select(y => y.firstName).Contains(id) || x.Authors.Select(y => y.lastName).Contains(id));
+            var matchedBooks = db.Books.Where(x => x.Title.Contains(searchString) || x.Authors.Select(y => y.firstName).Contains(searchString) || x.Authors.Select(y => y.lastName).Contains(searchString));
             return View(matchedBooks);
         }
     }

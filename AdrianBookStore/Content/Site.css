@@ -149,3 +149,21 @@ textarea {
     padding-top: 10px;
     margin-left: 10px;
 }
+
+.searchwell{
+    filter: gray;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    background-image: url(/Images/explorebanner.jpg);
+    min-height: 400px;
+}
+.searchwell:hover{
+    filter:none;
+    -webkit-filter: grayscale(0);
+}
+
+.frontwell {
+    color: white;
+    text-shadow: 1px 1px 1px #000000;
+    font-family: 'Times New Roman', Times, serif;
+}

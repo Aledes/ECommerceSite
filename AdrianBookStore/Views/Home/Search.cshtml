@@ -4,78 +4,23 @@
     ViewBag.Title = "Search";
 }
 
-<h2>Search</h2>
+<h2>Search Results</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoverImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rowguid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NewColumn)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="booklist panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3>@book.Title</h3>
+                    <p>@String.Join(",", book.Authors.Select(x => x.firstName + " " + x.lastName))</p>
+                </div>
+                <div class="panel-body">
+                    <a href="/book/index/@book.BookID"><img class="img-rounded bookimage" src="@book.CoverImage" /></a>
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoverImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rowguid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NewColumn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
-        </td>
-    </tr>
-}
+            </div>
+        </div>
+    }
+</div>
 
-</table>
