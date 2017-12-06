@@ -10,43 +10,45 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <a href='@Url.Action("Index","Home")' /><img src="~/Images/UpperLogo.png" />
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <div class="pull-right">
+                    @Html.ActionLink("Sign out as " + User.Identity.Name, "LogOff", "Account", null, new { @class = "signout" })
+                    <!-- if (User.IsInRole("Administrator")) when set up in database-->
+                    @Html.ActionLink("Products Admin", "Index", "BooksAdmin", null, new { @class = "btn btn-warning btn-sm" })
+                </div>
+            }
+        </div>
+        <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href='@Url.Action("Index", "Home")'>
-                    <img src="~/Images/PAAlogoSM.png"  class="mylogo" />
-                </a>
-            </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group form-inline searchbar" }))
-                                {
-                                    @Html.TextBox("searchString", null, new { @class = "form-control" })
+                    <a>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group form-inline searchbar" }))
+                        {
+                            @Html.TextBox("searchString", null, new { @class = "form-control" })
                                     <!-- <input name="Search" type="text" class="form-control" placeholder="Search" /> -->
-                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                                }
-                            </li>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        }
+                    </a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+</div>
+                    <div class="navbar-collapse collapse">
+                       
+                        <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Store", "List", "Book")</li>
                             <li><a href="/Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart<span class="badge">@ViewBag.CartCount</span></a></li>
-                            @if (Context.User.Identity.IsAuthenticated)
-                            {
-                            <li>@Html.ActionLink("Sign Out as " + User.Identity.Name, "LogOff", "Account")</li>
-                            <!-- if (User.IsInRole("Administrator")) when set up in database-->
-                            <li>@Html.ActionLink("Products Admin", "Index", "BooksAdmin")</li>
-                            
-                            }
-                        </ul>
+                        </ul>          
                         
                         @if (!User.Identity.IsAuthenticated)
                         {
-
-                            using (Html.BeginForm("SignIn", "Account", null, FormMethod.Post, new { @class = "navbar-form navbar-right form-inline signin" }))
-                            {
+                            <ul class="nav navbar-nav navbar-right">
+                                @using (Html.BeginForm("SignIn", "Account", null, FormMethod.Post, new { @class = "navbar-form form-inline signin" }))
+                                {
                                 <div class="form-group form-inline">
                                     <a class="btn btn-success" href="/Account/Register">Register</a>
                                     <a class="btn btn-default collapsedbutton" href="/Account/SignIn">Sign In</a>
@@ -68,13 +70,16 @@
                                             </div>
                                             <li role="separator" class="divider"></li>
                                             <a>@Html.ActionLink("Forgot Password?", "ForgotPassword", "Account", new { @class = "forgotpw" })</a>
-                                                <button type="submit" class="btn btn-warning btn-sm pull-right">Login</button>
+                                            <button type="submit" class="btn btn-warning btn-sm pull-right">Login</button>
 
                                         </ul>
                                     </div>
                                 </div>
-                            }
-                        }                                         
+                                }
+                            </ul>
+                        }
+                           
+                            
                     </div>      
         </div>
     </div>

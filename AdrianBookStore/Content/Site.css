@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 112px;
     padding-bottom: 20px;
 }
 
@@ -32,8 +32,10 @@ textarea {
     color: white;
     text-shadow: 3px 3px 1px #000000;
     background-size: cover;
-    background-image: url('../../Images/pexels-photo-532179.png');
+    background-image: url('../../Images/hireme.png');
     height: 300px;
+    border-radius: 0px;
+    margin-bottom: 0px;
 }
 
 @media (max-width: 767px) {
@@ -166,4 +168,22 @@ textarea {
     color: white;
     text-shadow: 1px 1px 1px #000000;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.signout:visited{
+    color: grey;
+}
+.signout{
+    color: grey;
+    font-size: 1em;
+}
+
+.well{
+    border-radius: 0px;
+
+}
+
+.linethrough{
+    text-decoration: line-through;
+    color: gray;
 }

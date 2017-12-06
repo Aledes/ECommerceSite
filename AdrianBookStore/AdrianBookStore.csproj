@@ -284,6 +284,7 @@
     <Content Include="Images\1984.jpeg" />
     <Content Include="Images\endersgame.jpg" />
     <Content Include="Images\explorebanner.jpg" />
+    <Content Include="Images\hireme.png" />
     <Content Include="Images\hitchhike.png" />
     <Content Include="Images\invisibleman.jpg" />
     <Content Include="Images\PAAlogo.png" />
@@ -292,6 +293,7 @@
     <Content Include="Images\pexels-photo-532179.png" />
     <Content Include="Images\readyplayerone.jpg" />
     <Content Include="Images\the-hobbit.jpg" />
+    <Content Include="Images\UpperLogo.png" />
     <Content Include="Models\BookStoreDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookStoreDB.edmx</DependentUpon>
